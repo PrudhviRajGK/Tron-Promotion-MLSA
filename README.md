@@ -22,6 +22,7 @@ This project is a Tron-themed augmented reality (AR) web experience using A-Fram
 
 ## File Structure
 tron-ar-web/
+
 ├── index.html          # Main HTML file
 ├── styles.css          # Tron-themed styles
 ├── scripts.js         # JavaScript logic (if any)
