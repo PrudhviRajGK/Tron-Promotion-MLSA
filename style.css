@@ -1,0 +1,422 @@
+<style >
+body {
+    margin: 0;
+    overflow: hidden;
+    background: transparent;
+}
+
+.tron-title {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    font-family: 'Orbitron', sans-serif;
+    color: rgb(0, 29, 56);
+    text-shadow: 0 0 10px cyan, 0 0 20px #00ffff, 0 0 40px #00e6e6, 0 0 80px #00cccc;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    backdrop-filter: blur(2px);
+    padding: 10px 0;
+    border-radius: 10px;
+    background: rgba(0, 255, 255, 0.05);
+    animation: neon-glow 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes neon-glow {
+    0% {
+        text-shadow: 0 0 10px cyan, 0 0 20px #00ffff, 0 0 40px #00e6e6, 0 0 80px #00cccc;
+        transform: scale(1);
+    }
+    100% {
+        text-shadow: 0 0 15px cyan, 0 0 30px #00ffff, 0 0 60px #00e6e6, 0 0 120px #00cccc;
+        transform: scale(1.1);
+    }
+}
+
+
+
+.sponsors-section {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    
+    background: rgba(0, 255, 255, 0.1);
+    padding: 20px 30px;
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), 0 0 30px rgba(0, 255, 255, 0.2);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    
+    animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.sponsors-section.show {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+
+
+.sponsors-section img:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.9));
+}
+
+.sponsors-section.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sponsors-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2em;
+    color: rgba(255, 34, 0, 0.8);
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.6), 0 0 12px rgba(0, 255, 255, 0.3);
+    background: linear-gradient(90deg, rgba(0, 255, 255, 0.3), rgba(0, 255, 255, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: pulse 3s infinite ease-in-out;
+}
+
+.sponsor-images {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
+}
+
+.sponsor-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid cyan;
+    box-shadow: 0 0 15px cyan, inset 0 0 15px cyan;
+    transition: all 0.3s ease;
+    animation: sponsorGlow 3s infinite ease-in-out;
+}
+
+.sponsor-image:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px cyan, inset 0 0 25px cyan;
+}
+
+.tron-button {
+    position: fixed;
+    bottom: 240px; /* Adjusted to avoid collision with sponsors */
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 12px 24px;
+    font-size: 1.4em;
+    font-family: 'Orbitron', sans-serif;
+    color: cyan;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 255, 255, 0.1));
+    border: 2px solid cyan;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    text-shadow: 0 0 12px cyan, 0 0 24px rgba(0, 255, 255, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    transition: all 0.4s ease-in-out, transform 0.3s ease-in-out;
+    white-space: nowrap;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    backdrop-filter: blur(8px);
+    box-shadow: inset 0 0 10px cyan, 0 0 20px cyan;
+    animation: glow-pulse 1.5s infinite alternate ease-in-out;
+}
+
+.tron-button.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -5px);
+}
+
+.tron-button:hover {
+    background: rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 25px cyan, 0 0 40px rgba(0, 255, 255, 0.8);
+    transform: translate(-50%, -8px) scale(1.05);
+}
+
+.tron-button:active {
+    background: rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 15px cyan, 0 0 30px rgba(0, 255, 255, 0.8);
+    transform: translate(-50%, 2px) scale(0.95);
+}
+
+@keyframes glow-pulse {
+    from {
+        box-shadow: inset 0 0 10px cyan, 0 0 15px cyan;
+    }
+    to {
+        box-shadow: inset 0 0 15px cyan, 0 0 25px rgba(0, 255, 255, 0.9);
+    }
+}
+
+
+.flowing-line {
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 255, 255, 0) 0%,
+        rgba(0, 255, 255, 0.8) 50%,
+        rgba(0, 255, 255, 0) 100%
+    );
+    animation: flow 3s infinite linear, flicker 1.5s infinite alternate ease-in-out;
+    pointer-events: none;
+    filter: drop-shadow(0 0 10px cyan);
+    opacity: 0.8;
+}
+
+@keyframes flow {
+    0% { transform: translateX(0vw); }
+    100% { transform: translateX(100vw); }
+}
+
+/* Light flickering effect to make the energy line feel dynamic */
+@keyframes flicker {
+    0% { opacity: 0.8; filter: drop-shadow(0 0 8px cyan); }
+    100% { opacity: 1; filter: drop-shadow(0 0 15px cyan); }
+}
+
+/* Additional floating glowing particles */
+.flowing-line::before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: cyan;
+    border-radius: 50%;
+    top: 10%;
+    left: 50%;
+    box-shadow: 0 0 15px cyan, 0 0 30px rgba(0, 255, 255, 0.8);
+    animation: floatParticle 2s infinite ease-in-out;
+}
+
+@keyframes floatParticle {
+    0% { transform: translate(-50%, 0); opacity: 1; }
+    50% { transform: translate(-50%, -15px); opacity: 0.6; }
+    100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* Sponsor Glow Upgrade */
+@keyframes sponsorGlow {
+    0%, 100% { box-shadow: 0 0 20px cyan, inset 0 0 20px cyan; }
+    50% { box-shadow: 0 0 35px cyan, inset 0 0 35px cyan; }
+}
+
+/* Pulse Animation Upgrade */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+
+.grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 50px);
+    grid-template-rows: repeat(auto-fit, 50px);
+    pointer-events: none;
+    opacity: 0.8;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, rgba(0, 255, 255, 0) 80%);
+    animation: gridFade 8s infinite alternate ease-in-out;
+}
+
+/* Sexy Animated Grid Dots */
+.grid-dot {
+    width: 6px;
+    height: 6px;
+    background-color: rgba(0, 255, 255, 0.7);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.9);
+    border-radius: 50%;
+    animation: dotPulse 3s infinite ease-in-out alternate, dotGlow 4s infinite alternate ease-in-out;
+}
+
+/* Subtle Glow Expansion */
+@keyframes dotPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* Flickering Glow Intensity */
+@keyframes dotGlow {
+    0% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.7); }
+    50% { box-shadow: 0 0 20px rgba(0, 255, 255, 1); }
+    100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.7); }
+}
+
+/* Slow Grid Fade Effect */
+@keyframes gridFade {
+    0% { opacity: 0.5; }
+    100% { opacity: 0.8; }
+}
+
+
+
+:root {
+    --tron-cyan: #00ffd9;
+    --tron-blue: #007fff;
+    --tron-glow: 0 0 20px var(--tron-cyan);
+}
+
+
+
+
+.grid {
+    background-image: 
+        linear-gradient(var(--tron-cyan) 1px, transparent 1px),
+        linear-gradient(90deg, var(--tron-cyan) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.25;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(40px); }
+}
+
+.tron-button {
+    clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+    background: linear-gradient(45deg, rgba(0, 255, 217, 0.1), rgba(0, 127, 255, 0.1));
+    border: none;
+    position: relative;
+}
+
+.tron-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--tron-cyan);
+    clip-path: inherit;
+    animation: buttonGlow 2s infinite;
+}
+
+@keyframes buttonGlow {
+    0%, 100% { box-shadow: 0 0 15px var(--tron-cyan); }
+    50% { box-shadow: 0 0 30px var(--tron-cyan), 0 0 50px var(--tron-blue); }
+}
+
+.flowing-line {
+    background: linear-gradient(to bottom, 
+        transparent,
+        var(--tron-cyan),
+        var(--tron-blue),
+        var(--tron-cyan),
+        transparent
+    );
+    width: 1px;
+    box-shadow: 0 0 20px var(--tron-cyan);
+    opacity: 0.6;
+}
+
+.sponsors-section {
+    background: linear-gradient(rgba(0,0,0,0.7), transparent);
+    padding: 20px;
+    border-top: 1px solid var(--tron-cyan);
+}
+
+.sponsor-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.sponsor-image::after {
+    content: '';
+    position: absolute;
+    top: -150%;
+    left: -150%;
+    width: 400%;
+    height: 400%;
+    background: 
+        linear-gradient(45deg,
+            transparent 20%,
+            rgba(0, 255, 217, 0.1) 40%,
+            rgba(0, 255, 217, 0.3) 45%,
+            var(--tron-cyan) 48%,
+            #fff 50%,
+            var(--tron-cyan) 52%,
+            rgba(0, 255, 217, 0.3) 55%,
+            rgba(0, 255, 217, 0.1) 60%,
+            transparent 80%
+        ),
+        linear-gradient(-45deg,
+            transparent 45%,
+            rgba(0, 127, 255, 0.2) 48%,
+            var(--tron-blue) 50%,
+            rgba(0, 127, 255, 0.2) 52%,
+            transparent 55%
+        );
+    mix-blend-mode: overlay;
+    transform-origin: center;
+    animation: enhancedScanline 4s infinite linear;
+    filter: blur(1px) brightness(1.5);
+}
+
+@keyframes enhancedScanline {
+    0% {
+        transform: translate(-100%, -100%) rotate(45deg) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(100%, 100%) rotate(45deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    border: 2px solid var(--tron-cyan);
+    pointer-events: none;
+}
+
+body::before {
+    top: 20px;
+    left: 20px;
+    border-right: none;
+    border-bottom: none;
+}
+
+body::after {
+    bottom: 20px;
+    right: 20px;
+    border-left: none;
+    border-top: none;
+}
+
+
+</style>
